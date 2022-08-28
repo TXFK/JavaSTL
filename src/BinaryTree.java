@@ -1,8 +1,5 @@
 package src;
 
-import java.util.LinkedList;
-import java.util.Stack;
-
 public class BinaryTree<T> {
     public T value;
     public BinaryTree<T> left;
@@ -11,30 +8,63 @@ public class BinaryTree<T> {
     public BinaryTree() {
     }
 
-    public BinaryTree(T value){
+    public BinaryTree(T value) {
         this.value = value;
     }
 
-    public BinaryTree(T value, BinaryTree<T> left){
+    public BinaryTree(T value, BinaryTree<T> left) {
         this.value = value;
         this.left = left;
     }
-    public BinaryTree(T value, BinaryTree<T> left, BinaryTree<T> right){
+
+    public BinaryTree(T value, BinaryTree<T> left, BinaryTree<T> right) {
         this.value = value;
         this.left = left;
         this.right = right;
     }
 
-    /*——————S————————T————————A————————T————————I———————C————————method————————*/
-    public static Object[] levelOrderTraversal(BinaryTree<?> binaryTree){
-
-        Stack<Object> result = new Stack<>();
-        LinkedList<BinaryTree<?>> binaryTrees = new LinkedList<>();
-        binaryTrees.offer(binaryTree);
-        while(!binaryTrees.isEmpty()){
-            BinaryTree<?> operatingNode = binaryTrees.poll();
-            result.push(operatingNode)
+    public T[] levelOrderTraversal() {
+        NodeStack<T> result = new NodeStack<>();
+        NodeQueue<BinaryTree<T>> binaryTrees = new NodeQueue<>();
+        binaryTrees.enqueue(this);
+        while (!binaryTrees.isEmpty()) {
+            BinaryTree<T> operatedNode = binaryTrees.dequeue();
+            result.push(operatedNode.value);
+            binaryTrees.enqueue(operatedNode.left);
+            binaryTrees.enqueue(operatedNode.right);
         }
+        return result.toArray();
     }
 
+    public T[] inorderTraversal() {
+        NodeStack<T> result = new NodeStack<>();
+        if (left != null) {
+            for (T items : left.inorderTraversal()) {
+                result.push(items);
+            }
+        }
+        result.push(this.value);
+        if (right != null) {
+            for (T items : right.inorderTraversal()) {
+                result.push(items);
+            }
+        }
+        return result.toArray();
+    }
+
+    public T[] postOrderTraversal() {
+        NodeStack<T> result = new NodeStack<>();
+        if (left != null) {
+            for (T items : left.inorderTraversal()) {
+                result.push(items);
+            }
+        }
+        if (right != null) {
+            for (T items : right.inorderTraversal()) {
+                result.push(items);
+            }
+        }
+        result.push(this.value);
+        return result.toArray();
+    }
 }

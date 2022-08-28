@@ -54,4 +54,6 @@ class NodeQueue<T> {
     public boolean isEmpty(){
         return (values.size == 0);
     }
+
+    public T[] toArray(){return values.toArray();}
 }
