@@ -1,4 +1,4 @@
-package src;
+package JavaSTL;
 
 import java.util.Arrays;
 

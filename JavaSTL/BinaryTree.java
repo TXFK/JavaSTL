@@ -1,4 +1,4 @@
-package src;
+package JavaSTL;
 
 public class BinaryTree<T> {
     public T value;

@@ -1,4 +1,4 @@
-package src;
+package JavaSTL;
 
 class NodeStack<T> {
     private final NodeList<T> values;

@@ -1,4 +1,4 @@
-package src;
+package JavaSTL;
 
 public class NodeList<E> {
     Node<E> head = new Node<>();
