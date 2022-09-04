@@ -1,4 +1,4 @@
-package src;
+package JavaSTL;
 
 class NodeStack<T> {
     private final NodeList<T> values;
@@ -16,13 +16,13 @@ class NodeStack<T> {
     }
 
     public T pop() {
-        T result = values.getByIndex(values.size - 1);
-        values.delete(values.size - 1);
+        T result = values.get(values.size() - 1);
+        values.removeByIndex(values.size() - 1);
         return result;
     }
 
     public boolean isEmpty() {
-        return (values.size == 0);
+        return (values.size() == 0);
     }
 
     public T[] toArray() {
@@ -42,17 +42,17 @@ class NodeQueue<T> {
     }
 
     public void enqueue(T item) {
-        values.add(-1, item);
+        values.add(item,-1);
     }
 
     public T dequeue() {
-        T result = values.getByIndex(values.size - 1);
-        values.delete(values.size - 1);
+        T result = values.get(values.size() - 1);
+        values.removeByIndex(values.size() - 1);
         return result;
     }
 
     public boolean isEmpty(){
-        return (values.size == 0);
+        return (values.size() == 0);
     }
 
     public T[] toArray(){return values.toArray();}
